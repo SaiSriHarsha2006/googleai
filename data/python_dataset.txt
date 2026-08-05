@@ -1,0 +1,122 @@
+# Simple Python implementations of classic algorithms
+
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quick_sort(left) + middle + quick_sort(right)
+
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def reverse_string(s):
+    reversed_str = ""
+    for char in s:
+        reversed_str = char + reversed_str
+    return reversed_str
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return -1
+
+def count_vowels(s):
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in s:
+        if char in vowels:
+            count += 1
+    return count
+
+def is_palindrome(s):
+    clean_str = "".join(char.lower() for char in s if char.isalnum())
+    return clean_str == clean_str[::-1]
+
+def find_max(arr):
+    if not arr:
+        return None
+    max_val = arr[0]
+    for val in arr:
+        if val > max_val:
+            max_val = val
+    return max_val
+
+def find_min(arr):
+    if not arr:
+        return None
+    min_val = arr[0]
+    for val in arr:
+        if val < min_val:
+            min_val = val
+    return min_val
+
+def sum_list(arr):
+    total = 0
+    for val in arr:
+        total += val
+    return total
